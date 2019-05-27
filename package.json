@@ -1,6 +1,6 @@
 {
   "name": "vuex-coolstory",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vuex plugin for redux-saga",
   "author": "Nikita Lvov <niklvov@gmail.com>",
   "main": "index.js",
@@ -9,7 +9,12 @@
     "lint-staged": "lint-staged"
   },
   "pre-commit": "lint-staged",
-  "keywords": ["vuex", "plugin", "redux-saga", "saga"],
+  "keywords": [
+    "vuex",
+    "plugin",
+    "redux-saga",
+    "saga"
+  ],
   "license": "ISC",
   "peerDependencies": {
     "redux-saga": "^1.*.*"
