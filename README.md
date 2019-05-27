@@ -1,4 +1,4 @@
-# vuex-coolstory [![NPM version](https://img.shields.io/npm/v/vuex-coolstory.svg?style=flat-square)](https://www.npmjs.com/package/vuex-redux-saga)
+# vuex-coolstory [![NPM version](https://img.shields.io/npm/v/vuex-coolstory.svg?style=flat-square)](https://www.npmjs.com/package/vuex-coolstory)
 
 Use [redux-saga](https://github.com/redux-saga/redux-saga) with [Vuex](https://vuex.vuejs.org).
 
