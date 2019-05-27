@@ -1,0 +1,21 @@
+{
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["json"],
+  "env": {
+    "node": true,
+    "mocha": false,
+    "browser": true
+  },
+  "rules": {
+    "indent": [
+      1,
+      4,
+      {
+        "flatTernaryExpressions": false,
+        "MemberExpression": 1,
+        "SwitchCase": 1
+      }
+    ],
+    "import/no-unresolved": ["error", { "ignore": ["^redux-saga$"] }]
+  }
+}
