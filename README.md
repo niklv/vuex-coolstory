@@ -9,9 +9,11 @@ While originally targetting [Redux](https://github.com/reactjs/redux), `redux-sa
 
 This library wraps `redux-saga` so it can be used as [Vuex](https://vuex.vuejs.org/) plugin. It's external interface is similar to middleware provided by `redux-saga`.
 
-## Differences from [vuex-saga](https://github.com/xanf/vuex-redux-saga)  
+## Differences from [vuex-redux-saga](https://github.com/xanf/vuex-redux-saga)  
 
-This package works fine and support latest version of redux-saga, plus also have `mapSagaAction()` function.  
+`vuex-redux-saga` not work with latest redux-saga, uses subcribe to commits hook as redux-saga action channel, and looks like abandoned. 
+This package support latest version of redux-saga, plus also have `mapSagaActions()` function for your components. To send actions to saga directly, you can use `store.sagaDispatch` function. `store.sagaDispatch` is similar to vuex `store.dispacth` function.
+  
 
 ## Installation
 
@@ -99,3 +101,7 @@ cd examples/simple
 webpack
 # check dist/index.html 
 ```
+
+## Contribution
+
+Pull request are welcome!
