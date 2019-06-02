@@ -3,21 +3,23 @@
   "version": "0.0.4",
   "description": "Vuex plugin for redux-saga",
   "author": "Nikita Lvov <niklvov@gmail.com>",
-  "files": [
-    "index.js"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niklv/vuex-coolstory"
+  },
+  "homepage": "https://github.com/niklv/vuex-coolstory",
+  "bugs": {
+    "url": "https://github.com/niklv/vuex-coolstory",
+    "email": "niklvov@gmail.com"
+  },
+  "files": ["index.js"],
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "lint-staged": "lint-staged"
   },
   "pre-commit": "lint-staged",
-  "keywords": [
-    "vuex",
-    "plugin",
-    "redux-saga",
-    "saga"
-  ],
+  "keywords": ["vuex", "plugin", "redux-saga", "saga"],
   "license": "ISC",
   "peerDependencies": {
     "redux-saga": "^1.*.*"
