@@ -26,7 +26,7 @@ $ npm install --save vuex-coolstory redux-saga
 ```js
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { VuexSaga } from 'vuex-saga';
+import { VuexSaga } from 'vuex-coolstory';
 import { take, put, race, delay } from 'redux-saga/effects';
 
 // simple saga
