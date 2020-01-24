@@ -1,4 +1,4 @@
-# vuex-coolstory [![NPM version](https://img.shields.io/npm/v/vuex-coolstory.svg?style=flat-square)](https://www.npmjs.com/package/vuex-coolstory)
+# vuex-coolstory [![NPM version](https://img.shields.io/npm/v/vuex-coolstory.svg?style=flat-square)](https://www.npmjs.com/package/vuex-coolstory) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/niklv/vuex-coolstory/NPM?style=flat-square)
 
 Use [redux-saga](https://github.com/redux-saga/redux-saga) with [Vuex](https://vuex.vuejs.org).
 
@@ -9,11 +9,11 @@ While originally targetting [Redux](https://github.com/reactjs/redux), `redux-sa
 
 This library wraps `redux-saga` so it can be used as [Vuex](https://vuex.vuejs.org/) plugin. It's external interface is similar to middleware provided by `redux-saga`.
 
-## Differences from [vuex-redux-saga](https://github.com/xanf/vuex-redux-saga)  
+## Differences from [vuex-redux-saga](https://github.com/xanf/vuex-redux-saga)
 
-`vuex-redux-saga` not work with latest redux-saga, uses subcribe to commits hook as redux-saga action channel, and looks like abandoned. 
+`vuex-redux-saga` not work with latest redux-saga, uses subcribe to commits hook as redux-saga action channel, and looks like abandoned.
 This package support latest version of redux-saga, plus also have `mapSagaActions()` function for your components. To send actions to saga directly, you can use `store.sagaDispatch` function. `store.sagaDispatch` is similar to vuex `store.dispacth` function.
-  
+
 
 ## Installation
 
@@ -77,7 +77,7 @@ Creates a Vuex plugin and connects the Sagas to the Vuex Store
 - `options: Object` - A list of options to pass to the plugin. Currently supported options are:
 
   - `sagas` : Array of saga generator functions.
-  
+
   - `sagaMonitor` : SagaMonitor - see docs for [`createSagaMiddleware(options)`](https://redux-saga.js.org/docs/api/)
 
   - `onError` : Function - see docs for [`createSagaMiddleware(options)`](https://redux-saga.js.org/docs/api/)
