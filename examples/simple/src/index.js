@@ -5,6 +5,8 @@ import { take, put, race, delay } from 'redux-saga/effects';
 import App from './app.vue';
 import { VuexSaga } from '../../../index';
 
+Vue.use(Vuex);
+
 function* saga() {
     while (true) {
         const { newItem, timer } = yield race({
@@ -24,8 +26,6 @@ function* saga() {
         }
     }
 }
-
-Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {

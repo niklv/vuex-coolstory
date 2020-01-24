@@ -2,4 +2,5 @@
 .eslintcache
 node_modules
 examples/simple/dist
+examples/modules/dist
 

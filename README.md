@@ -23,11 +23,14 @@ $ npm install --save vuex-coolstory redux-saga
 
 ## Usage
 
+### Simple
 ```js
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { VuexSaga } from 'vuex-coolstory';
 import { take, put, race, delay } from 'redux-saga/effects';
+
+Vue.use(Vuex);
 
 // simple saga
 function* saga() {
@@ -50,8 +53,6 @@ function* saga() {
     }
 }
 
-Vue.use(Vuex);
-
 export default new Vuex.Store({
     state: {
         items: []
@@ -68,6 +69,77 @@ export default new Vuex.Store({
     }
 });
 ```
+
+### Modules
+```js
+import Vue from 'vue';
+import Vuex from 'vuex';
+import { VuexSaga } from 'vuex-coolstory';
+import { take, put, race, delay } from 'redux-saga/effects';
+
+function* saga() {
+    while (true) {
+        const { newItem, timer } = yield race({
+            newItem: take('addItem'),
+            timer: delay(3000)
+        });
+        if (timer) {
+            yield put({
+                type: 'appendItem',
+                item: 'TIMER_A'
+            });
+            // if module is namespaced you must define namespace 
+            yield put({
+                type: 'moduleB/appendItem',
+                item: 'TIMER_B'
+            });
+        } else if (newItem) {
+            yield put({
+                type: 'appendItem',
+                item: newItem.payload.item
+            });
+            yield put({
+                type: 'moduleB/appendItem',
+                item: [...newItem.payload.item].reverse().join('')
+            });
+        }
+    }
+}
+
+export default new Vuex.Store({
+    modules: {
+        moduleA: {
+            namespaced: false,
+            state: {
+                items: []
+            },
+            mutations: {
+                appendItem(state, { item }) {
+                    state.items = [...state.items, item];
+                }
+            }
+        },
+        moduleB: {
+            namespaced: true,
+            state: {
+                items: []
+            },
+            mutations: {
+                appendItem(state, { item }) {
+                    state.items = [...state.items, item];
+                }
+            }
+        }
+    },
+    plugins: [
+        VuexSaga({
+            sagas: [saga]
+        })
+    ]
+});
+```
+
+
 
 ## API
 ### `VuexSaga(options)`

@@ -1,6 +1,6 @@
 {
   "name": "vuex-coolstory",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Vuex plugin for redux-saga",
   "author": "Nikita Lvov <niklvov@gmail.com>",
   "repository": {
