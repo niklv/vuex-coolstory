@@ -32,6 +32,36 @@ export function mapSagaActions(actions) {
     return res;
 }
 
+const channel = stdChannel();
+/**
+ * Sync saga dispatch
+ * 
+ * @param {string} type 
+ * @param {any} payload 
+ */
+export const sagaDispatch = (type, payload) => channel.put({ type, payload });
+
+/**
+ * Async saga dispatch
+ * 
+ * @param {string} type action
+ * @param {any} payload action
+ * @param {(action: Action) => boolean | string} resolver resolver for finish action
+ * @returns {Promise}
+ */
+export const sagaDispatchResolve = ({type, payload, resolver} = {}) => {
+    return new Promise(resolve => {
+        if (resolver) {
+            const isFn = typeof resolver === 'function';
+            const isString = typeof resolver === 'string';
+            const matcher = isFn ? resolver : isString ? action => action.type === resolver : () => true;
+
+            channel.take(resolve, matcher);
+            sagaDispatch(type, payload);
+        }
+    })
+};
+
 /**
  * Main plugin function
  *
@@ -41,14 +71,13 @@ export function mapSagaActions(actions) {
  */
 export function VuexSaga({ sagas = [], ...args } = {}) {
     return store => {
-        const channel = stdChannel();
-        // eslint-disable-next-line no-param-reassign
-        store.sagaDispatch = (type, payload) => channel.put({ type, payload });
+        const { commit } = store;
+        store.sagaDispatch = sagaDispatch;
         sagas.forEach(saga => {
             runSaga(
                 {
                     channel,
-                    dispatch: output => store.commit(output),
+                    dispatch: output => commit(output),
                     getState: () => store.state,
                     ...args
                 },
