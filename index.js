@@ -69,9 +69,18 @@ export const sagaDispatchResolve = ({type, payload, resolver} = {}) => {
  * @param args other parameters acceptable by rudux-saga runSaga function
  * @return {Function}
  */
-export function VuexSaga({ sagas = [], ...args } = {}) {
+export function VuexSaga({ sagas = [], isProxingFromVuex = true, ...args } = {}) {
     return store => {
         const { commit } = store;
+
+        if (isProxingFromVuex) {
+            store.commit = (type, payload) => {
+                channel.put({ type, payload });
+
+                return commit(type, payload);
+            }
+        }
+
         store.sagaDispatch = sagaDispatch;
         sagas.forEach(saga => {
             runSaga(
