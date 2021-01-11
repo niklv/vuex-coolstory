@@ -3,7 +3,7 @@
 
 ### Features
 
-* Call saga not only from the component ([0e2ae77](https://github.com/niklv/vuex-coolstory/commit/0e2ae771c52d361f3097a229ac8b7b17d589d068))
+* Call saga not only from the component ([0e2ae77](https://github.com/niklv/vuex-coolstory/commit/0e2ae771c52d361f3097a229ac8b7b17d589d068))  thnx [@kolesoffac](https://github.com/kolesoffac)
 
 
 
