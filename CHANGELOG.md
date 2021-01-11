@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/niklv/vuex-coolstory/compare/v0.1.0...v0.2.0) (2021-01-11)
+
+
+### Features
+
+* Call saga not only from the component ([0e2ae77](https://github.com/niklv/vuex-coolstory/commit/0e2ae771c52d361f3097a229ac8b7b17d589d068))
+
+
+
 # [0.1.0](https://github.com/niklv/vuex-coolstory/compare/v0.0.8...v0.1.0) (2021-01-11)
 
 
