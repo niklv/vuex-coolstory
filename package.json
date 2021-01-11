@@ -18,7 +18,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "pre-commit": "lint-staged",
   "keywords": [
