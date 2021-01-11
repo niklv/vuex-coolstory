@@ -160,12 +160,38 @@ Creates a Vuex plugin and connects the Sagas to the Vuex Store
 
   - `effectMiddlewares` : Function[] - see docs for [`createSagaMiddleware(options)`](https://redux-saga.js.org/docs/api/)
 
-
 ### `mapSagaActions(args)`
 
 Similar to `mapActions` or `mapMutations`.
 See usage in `examples/simple/src/app.vue`
 
+### `sagaDispatch(args)`
+
+Dispatch action to saga in sync mode.
+
+Example:
+```js
+/**
+ * @param {string} type 
+ * @param {any} payload 
+ */
+sagaDispatch({ type, payload });
+```
+
+### `sagaDispatchResolve(args)`
+
+Dispatch action to saga in async mode.
+
+Example:
+```js
+/**
+ * @param {string} type action
+ * @param {any} payload action
+ * @param {(action: Action) => boolean | string} resolver resolver for finish action
+ * @returns {Promise}
+ */
+sagaDispatchResolve = ({type, payload, resolver});
+```
 
 ## Run example
 
