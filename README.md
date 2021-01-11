@@ -150,6 +150,8 @@ Creates a Vuex plugin and connects the Sagas to the Vuex Store
 
   - `sagas` : Array of saga generator functions.
 
+  - `isProxingFromVuex` : Boolean - Flag of proxing mutation from vuex to saga.
+
   - `sagaMonitor` : SagaMonitor - see docs for [`createSagaMiddleware(options)`](https://redux-saga.js.org/docs/api/)
 
   - `onError` : Function - see docs for [`createSagaMiddleware(options)`](https://redux-saga.js.org/docs/api/)
