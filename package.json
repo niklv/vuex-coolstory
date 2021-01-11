@@ -19,7 +19,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint-staged": "lint-staged",
-    "version": "conventional-changelog -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "pre-commit": "lint-staged",
   "keywords": [
