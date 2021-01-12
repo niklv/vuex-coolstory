@@ -32,33 +32,65 @@ export function mapSagaActions(actions) {
     return res;
 }
 
+const channel = stdChannel();
+
+/**
+ * Sync saga dispatch
+ *
+ * @param {string} type
+ * @param {any} payload
+ */
+export const sagaDispatch = (type, payload) => channel.put({ type, payload });
+
+/**
+ * Async saga dispatch
+ *
+ * @param {string} type action
+ * @param {any} payload action
+ * @param {(action: Action) => boolean | string} resolver resolver for finish action
+ * @returns {Promise}
+ */
+export const sagaDispatchResolve = async ({ type, payload, resolver } = {}) =>
+    new Promise(resolve => {
+        if (resolver) {
+            const isFn = typeof resolver === 'function';
+            const isString = typeof resolver === 'string';
+            // eslint-disable-next-line no-nested-ternary
+            const matcher = isFn ? resolver : isString ? action => action.type === resolver : () => true;
+
+            channel.take(resolve, matcher);
+            sagaDispatch(type, payload);
+        }
+    });
+
 /**
  * Main plugin function
  *
  * @param {Array} sagas array of saga functions
+ * @param {Boolean} isProxingFromVuex flag of proxing mutation from vuex to saga.
  * @param args other parameters acceptable by rudux-saga runSaga function
  * @return {Function}
  */
 export function VuexSaga({ sagas = [], isProxingFromVuex = true, ...args } = {}) {
     return store => {
-        const channel = stdChannel();
         const { commit } = store;
-        // eslint-disable-next-line no-param-reassign
-        store.sagaDispatch = (type, payload) => channel.put({ type, payload });
 
-        if (isProxingFromVuex) {
+        // eslint-disable-next-line no-param-reassign
+        store.sagaDispatch = sagaDispatch;
+
+        if (isProxingFromVuex)
+            // eslint-disable-next-line no-param-reassign
             store.commit = (type, payload) => {
                 channel.put({ type, payload });
 
                 return commit(type, payload);
-            }
-        }
+            };
 
         sagas.forEach(saga => {
             runSaga(
                 {
                     channel,
-                    dispatch: output => store.commit(output),
+                    dispatch: output => commit(output),
                     getState: () => store.state,
                     ...args
                 },
