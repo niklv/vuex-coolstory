@@ -69,7 +69,7 @@ export const sagaDispatchResolve = async ({ type, payload, resolver } = {}) =>
  * @param {Generator} saga array of saga functions
  * @param {Store} store Vuex store
  * @param args other parameters acceptable by rudux-saga runSaga function
-  */
+ */
 export const addSaga = (saga, store, args) => {
     runSaga(
         {

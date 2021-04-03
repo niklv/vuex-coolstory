@@ -193,6 +193,23 @@ Example:
 sagaDispatchResolve = ({type, payload, resolver});
 ```
 
+### `addSaga(saga, store, args)`
+
+Add saga after creating root store
+
+Example:
+```js
+/**
+ * Add saga after creating root store
+ *
+ * @param {Generator} saga function
+ * @param {Store} store Vuex store
+ * @param args other parameters acceptable by rudux-saga runSaga function
+ */
+addSaga = (saga, store, args);
+```
+
+
 ## Run example
 
 ```sh
