@@ -169,7 +169,6 @@ See usage in `examples/simple/src/app.vue`
 
 Dispatch action to saga in sync mode.
 
-Example:
 ```js
 /**
  * @param {string} type 
@@ -182,7 +181,6 @@ sagaDispatch({ type, payload });
 
 Dispatch action to saga in async mode.
 
-Example:
 ```js
 /**
  * @param {string} type action
@@ -190,23 +188,20 @@ Example:
  * @param {(action: Action) => boolean | string} resolver resolver for finish action
  * @returns {Promise}
  */
-sagaDispatchResolve = ({type, payload, resolver});
+sagaDispatchResolve({type, payload, resolver});
 ```
 
 ### `addSaga(saga, store, args)`
 
 Add saga after creating root store
 
-Example:
 ```js
 /**
- * Add saga after creating root store
- *
  * @param {Generator} saga function
  * @param {Store} store Vuex store
  * @param args other parameters acceptable by rudux-saga runSaga function
  */
-addSaga = (saga, store, args);
+addSaga(saga, store, args);
 ```
 
 
