@@ -64,6 +64,25 @@ export const sagaDispatchResolve = async ({ type, payload, resolver } = {}) =>
     });
 
 /**
+ * Add saga after creating root store
+ *
+ * @param {Generator} saga array of saga functions
+ * @param {Store} store Vuex store
+ * @param args other parameters acceptable by rudux-saga runSaga function
+  */
+export const addSaga = (saga, store, args) => {
+    runSaga(
+        {
+            channel,
+            dispatch: output => store.commit(output),
+            getState: () => store.state,
+            ...args
+        },
+        saga
+    );
+};
+
+/**
  * Main plugin function
  *
  * @param {Array} sagas array of saga functions
@@ -75,27 +94,18 @@ export function VuexSaga({ sagas = [], isProxingFromVuex = true, ...args } = {})
     return store => {
         const { commit } = store;
 
+        sagas.forEach(saga => addSaga(saga, store, args));
+
         // eslint-disable-next-line no-param-reassign
         store.sagaDispatch = sagaDispatch;
 
-        if (isProxingFromVuex)
+        if (isProxingFromVuex) {
             // eslint-disable-next-line no-param-reassign
             store.commit = (type, payload) => {
                 channel.put({ type, payload });
 
                 return commit(type, payload);
             };
-
-        sagas.forEach(saga => {
-            runSaga(
-                {
-                    channel,
-                    dispatch: output => commit(output),
-                    getState: () => store.state,
-                    ...args
-                },
-                saga
-            );
-        });
+        }
     };
 }
