@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/niklv/vuex-coolstory/compare/v0.2.0...v0.3.0) (2021-04-03)
+
+
+### Features
+
+* Add saga outside plugin ([83f72bd](https://github.com/niklv/vuex-coolstory/commit/83f72bd7bbf0ae4553165a2ab1a2d2ee37c7c934))
+
+
+
 # [0.2.0](https://github.com/niklv/vuex-coolstory/compare/v0.1.0...v0.2.0) (2021-01-11)
 
 
